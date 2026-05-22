@@ -1,0 +1,13 @@
+# Machine-local / secret environment.
+# Copy this file to ~/.zshrc.local on each machine and fill in the values.
+# This file is sourced from .zshrc but is NOT tracked in git.
+
+# Proxmox API credentials
+# export PM_USER="terraform_user@pve"
+# export PM_PASS="REDACTED"
+
+# Cluster Pro password
+# export ClusterProPass="REDACTED"
+
+# OpenAI API key (used by codecompanion.nvim)
+# export OPENAI_API_KEY="sk-..."

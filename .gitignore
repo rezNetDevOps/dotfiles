@@ -1,0 +1,18 @@
+# Never commit machine-local / secret env
+home/.zshrc.local
+.zshrc.local
+
+# OS junk
+.DS_Store
+*.swp
+*.swo
+
+# Editor scratch
+*~
+
+# Backups created by install.sh
+*.bak
+*.bak.*
+
+# Don't track nvim runtime state
+config/nvim/.luarc.json
