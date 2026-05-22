@@ -64,11 +64,19 @@ export HUBBLE_ARCH=arm64
 # kubeconfig
 [ -f ~/.kube/config_all ] && export KUBECONFIG=~/.kube/config_all
 
-# argocd completion (only if argocd is installed)
-if command -v argocd >/dev/null 2>&1; then
-  source <(argocd completion zsh)
-  compdef _argocd argocd
-fi
+# --- Kubernetes helpers ---
+# context / namespace shortcuts
+command -v kubectx >/dev/null 2>&1 && alias kc='kubectx'
+command -v kubens  >/dev/null 2>&1 && alias kn='kubens'
+
+# Bulk-load shell completion for k8s tools that expose `completion zsh`.
+for _k8s_cmd in helm kustomize talosctl cilium hubble k3d kind minikube velero argocd; do
+  if command -v "$_k8s_cmd" >/dev/null 2>&1; then
+    source <("$_k8s_cmd" completion zsh 2>/dev/null) 2>/dev/null
+  fi
+done
+unset _k8s_cmd
+command -v argocd >/dev/null 2>&1 && compdef _argocd argocd
 
 # Android SDK
 export ANDROID_HOME=$HOME/Library/Android/sdk

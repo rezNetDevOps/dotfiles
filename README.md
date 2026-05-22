@@ -16,6 +16,33 @@ My personal Mac config — shell, editor, terminal. Pull this on a new machine, 
 | `home/.fzf.zsh`          | `~/.fzf.zsh`                   | fzf key bindings (zsh)           |
 | `home/.fzf.bash`         | `~/.fzf.bash`                  | fzf key bindings (bash)          |
 | `config/nvim/`           | `~/.config/nvim/`              | Neovim (LazyVim)                 |
+| `Brewfile`               | n/a                            | CLI tools to install via `brew bundle` |
+
+### Tools installed by the Brewfile
+
+- **Shell / editor:** zsh, tmux, neovim, fzf, git, exa, xh
+- **Kubernetes core:** kubectl, helm, kustomize, k9s, kubetail, kubectx (gives `kubectx` + `kubens`)
+- **GitOps:** argocd
+- **Local clusters:** kind, k3d, minikube
+- **Ops / debug:** velero, kubeshark, tilt
+- **Cilium / Hubble:** cilium-cli, hubble
+- **Talos:** talosctl
+- **VPN into clusters:** kubevpn
+- **MinIO:** mc
+
+`.zshrc` loads completions for these guarded by `command -v`, so a machine
+missing any of them still opens a shell cleanly. `kc` → `kubectx`, `kn` →
+`kubens`.
+
+### What's NOT in the repo (machine-local)
+
+Kubeconfigs and cluster credentials never leave the machine. The following
+stay on each Mac and have to be set up there:
+
+- `~/.kube/` — kubeconfigs (your `config_all` is sourced by `.zshrc` if present)
+- `~/.config/argocd/` — argocd login tokens
+- `~/.talos/` — talosconfig
+- `~/.kubevpn/`, `~/.minikube/` — machine state
 
 ## Bootstrap a new Mac
 
@@ -24,8 +51,10 @@ My personal Mac config — shell, editor, terminal. Pull this on a new machine, 
 xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# 2. Install the tools the configs assume
-brew install zsh tmux neovim git fzf
+# 2. Install all CLI tools from the Brewfile (zsh, tmux, nvim, fzf,
+#    plus the full Kubernetes toolkit)
+git clone https://github.com/rezNetDevOps/dotfiles.git ~/dotfiles
+brew bundle --file=~/dotfiles/Brewfile
 brew install --cask iterm2 kitty   # whichever terminal you use
 
 # 3. oh-my-zsh + powerlevel10k
@@ -39,8 +68,7 @@ git clone https://github.com/zsh-users/zsh-completions \
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
   "$HOME/zsh-syntax-highlighting"
 
-# 4. Clone this repo and run the installer
-git clone https://github.com/rezNetDevOps/dotfiles.git ~/dotfiles
+# 4. Run the installer (symlinks files from the repo into $HOME)
 cd ~/dotfiles
 ./install.sh
 
