@@ -18,7 +18,7 @@ brew "tmux"
 brew "neovim"
 brew "fzf"
 brew "git"
-brew "exa"                    # used by `lt` alias
+brew "eza"                    # used by `lt` alias (exa was archived; eza is the maintained fork)
 brew "xh"                     # used by `http` alias
 
 # ----------------------------------------------------------------------------

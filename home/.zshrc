@@ -39,7 +39,7 @@ fi
 alias myip='curl icanhazip.com'
 alias upgrade='brew update && brew upgrade'
 alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
-alias lt='exa --tree --level=2 --long --icons --git'
+alias lt='eza --tree --level=2 --long --icons --git'
 alias http='xh'
 alias cdl='cd $(llama)'
 alias sshproxy='ssh -o "ProxyCommand=nc -X 5 -x 127.0.0.1:1080 %h %p"'
