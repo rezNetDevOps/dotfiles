@@ -70,3 +70,9 @@ brew "kubevpn"
 # Object storage
 # ----------------------------------------------------------------------------
 brew "minio/stable/mc"        # MinIO client (used in .zshrc completion)
+
+# ----------------------------------------------------------------------------
+# Terminal + fonts
+# ----------------------------------------------------------------------------
+cask "ghostty"
+cask "font-caskaydia-mono-nerd-font"   # used by Ghostty config

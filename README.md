@@ -16,6 +16,7 @@ My personal Mac config — shell, editor, terminal. Pull this on a new machine, 
 | `home/.fzf.zsh`          | `~/.fzf.zsh`                   | fzf key bindings (zsh)           |
 | `home/.fzf.bash`         | `~/.fzf.bash`                  | fzf key bindings (bash)          |
 | `config/nvim/`           | `~/.config/nvim/`              | Neovim (LazyVim)                 |
+| `config/ghostty/`        | `~/.config/ghostty/`           | Ghostty terminal                 |
 | `Brewfile`               | n/a                            | CLI tools to install via `brew bundle` |
 
 ### Tools installed by the Brewfile
@@ -29,6 +30,7 @@ My personal Mac config — shell, editor, terminal. Pull this on a new machine, 
 - **Talos:** talosctl
 - **VPN into clusters:** kubevpn
 - **MinIO:** mc
+- **Terminal:** Ghostty (cask) + CaskaydiaMono Nerd Font
 
 `.zshrc` loads completions for these guarded by `command -v`, so a machine
 missing any of them still opens a shell cleanly. `kc` → `kubectx`, `kn` →
@@ -55,7 +57,8 @@ xcode-select --install
 #    plus the full Kubernetes toolkit)
 git clone https://github.com/rezNetDevOps/dotfiles.git ~/dotfiles
 brew bundle --file=~/dotfiles/Brewfile
-brew install --cask iterm2 kitty   # whichever terminal you use
+# (Ghostty is in the Brewfile above. If you also want iTerm2/kitty:)
+# brew install --cask iterm2 kitty
 
 # 3. oh-my-zsh + powerlevel10k
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
